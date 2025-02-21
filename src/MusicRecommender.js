@@ -30,9 +30,9 @@ const MusicRecommender = () => {
                 onChange={(e) => setLanguage(e.target.value)}
                 style={styles.select}
             >
+                <option value="Turkish">Random</option>
                 <option value="Turkish">Hindi</option>
                 <option value="Turkish">English</option>
-                <option value="Turkish">Turkish</option>
                 <option value="Turkish">Turkish</option>
                 <option value="Turkish">Turkish</option>
                 <option value="Turkish">Turkish</option>
