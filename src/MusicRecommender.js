@@ -23,19 +23,19 @@ const MusicRecommender = () => {
                     onChange={(e) => setThoughts(e.target.value)}
                     style={styles.input}
                 />
-                <label style={styles.label}>Select a language for your music:</label>
+                <label style={styles.label}>🎧 Select a language for your music:</label>
                 <select
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                     style={styles.select}
                 >
-                    <option value="Random">Random</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="English">English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="Russian">Russian</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Korean">Korean</option>
+                    <option value="Random">🌍 Random</option>
+                    <option value="Hindi">🇮🇳 Hindi</option>
+                    <option value="English">🇺🇸 English</option>
+                    <option value="Spanish">🇪🇸 Spanish</option>
+                    <option value="Russian">🇷🇺 Russian</option>
+                    <option value="Chinese">🇨🇳 Chinese</option>
+                    <option value="Korean">🇰🇷 Korean</option>
                 </select>
                 <div style={styles.buttonContainer}>
                     <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
@@ -70,10 +70,13 @@ const styles = {
         padding: "20px",
         borderRadius: "10px",
         backgroundColor: "#282828",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
     },
     title: {
         fontSize: "2.5rem",
         marginBottom: "20px",
+        fontWeight: "bold",
+        textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
     },
     input: {
         padding: "12px",
@@ -85,11 +88,13 @@ const styles = {
         backgroundColor: "#333",
         color: "#FFF",
         outline: "none",
+        boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.3)",
     },
     label: {
         fontSize: "16px",
         marginBottom: "8px",
-        color: "#FFF",
+        color: "#1DB954",
+        fontWeight: "bold",
     },
     select: {
         padding: "12px",
@@ -102,6 +107,7 @@ const styles = {
         cursor: "pointer",
         outline: "none",
         transition: "all 0.3s ease-in-out",
+        boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.3)",
     },
     buttonContainer: {
         display: "flex",
@@ -117,6 +123,7 @@ const styles = {
         cursor: "pointer",
         fontSize: "16px",
         transition: "background 0.3s ease-in-out",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
     },
     footer: {
         position: "absolute",
@@ -127,6 +134,7 @@ const styles = {
         color: "#AAA",
         fontSize: "14px",
         textAlign: "center",
+        boxShadow: "0px -3px 5px rgba(0, 0, 0, 0.3)",
     },
 };
 
