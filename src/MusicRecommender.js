@@ -34,7 +34,7 @@ const MusicRecommender = () => {
                 <option value="Turkish">Hindi</option>
                 <option value="Turkish">English</option>
                 <option value="Turkish">Spanish</option>
-                <option value="Turkish">Turkish</option>
+                <option value="Turkish">Russian</option>
                 <option value="Turkish">Turkish</option>
                 <option value="Turkish">Turkish</option>
                 <option value="Turkish">Turkish</option>
