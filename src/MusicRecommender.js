@@ -1,63 +1,70 @@
-// src/MusicRecommender.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const MusicRecommender = () => {
-    const [thoughts, setThoughts] = useState('');
-    const [language, setLanguage] = useState('Turkish');
+    const [thoughts, setThoughts] = useState("");
+    const [language, setLanguage] = useState("Random");
 
     const handleGetMusic = () => {
-        // Logic to get music based on "thoughts" and "language"
         console.log(`Getting music for: ${thoughts} in ${language}`);
     };
 
     const handleGetPlaylist = () => {
-        // Logic to get a playlist based on "thoughts" and "language"
         console.log(`Getting playlist for: ${thoughts} in ${language}`);
     };
 
     return (
-        <div style={styles.container}>
-            <h1 style={styles.title}>Mood-Based Music Recommender</h1>
-            <input
-                type="text"
-                placeholder="What are you thinking?"
-                value={thoughts}
-                onChange={(e) => setThoughts(e.target.value)}
-                style={styles.input}
-            />
-            <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                style={styles.select}
-            >
-                <option value="Turkish">Random</option>
-                <option value="Turkish">Hindi</option>
-                <option value="Turkish">English</option>
-                <option value="Turkish">Spanish</option>
-                <option value="Turkish">Russian</option>
-                <option value="Turkish">Chinese</option>
-                <option value="Turkish">Korean</option>
-
-            </select>
-            <div style={styles.buttonContainer}>
-                <button onClick={handleGetMusic} style={styles.button}>Get Music</button>
-                <button onClick={handleGetPlaylist} style={styles.button}>Get Playlist</button>
+        <div style={styles.overlay}>
+            <div style={styles.container}>
+                <h1 style={styles.title}>🎵 Mood-Based Music Recommender 🎶</h1>
+                <input
+                    type="text"
+                    placeholder="What’s on your mind?"
+                    value={thoughts}
+                    onChange={(e) => setThoughts(e.target.value)}
+                    style={styles.input}
+                />
+                <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    style={styles.select}
+                >
+                    <option value="Random">Random</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Korean">Korean</option>
+                </select>
+                <div style={styles.buttonContainer}>
+                    <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
+                    <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
+                </div>
             </div>
         </div>
     );
 };
 
 const styles = {
-    container: {
+    overlay: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    container: {
+        padding: "20px",
+        borderRadius: "12px",
         backgroundColor: "#1E1E1E",
         color: "#FFFFFF",
         textAlign: "center",
         fontFamily: "Arial, sans-serif",
+        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
     },
     title: {
         fontSize: "2.5rem",
@@ -102,6 +109,5 @@ const styles = {
         transition: "background 0.3s ease-in-out",
     },
 };
-
 
 export default MusicRecommender;
