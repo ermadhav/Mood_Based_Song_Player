@@ -14,31 +14,33 @@ const MusicRecommender = () => {
 
     return (
         <div style={styles.overlay}>
-            <div style={styles.container}>
-                <h1 style={styles.title}>🎵 Mood-Based Music Recommender 🎶</h1>
-                <input
-                    type="text"
-                    placeholder="What’s on your mind?"
-                    value={thoughts}
-                    onChange={(e) => setThoughts(e.target.value)}
-                    style={styles.input}
-                />
-                <select
-                    value={language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                    style={styles.select}
-                >
-                    <option value="Random">Random</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="English">English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="Russian">Russian</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Korean">Korean</option>
-                </select>
-                <div style={styles.buttonContainer}>
-                    <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
-                    <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
+            <div style={styles.box}>
+                <div style={styles.container}>
+                    <h1 style={styles.title}>🎵 Mood-Based Music Recommender 🎶</h1>
+                    <input
+                        type="text"
+                        placeholder="What’s on your mind?"
+                        value={thoughts}
+                        onChange={(e) => setThoughts(e.target.value)}
+                        style={styles.input}
+                    />
+                    <select
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                        style={styles.select}
+                    >
+                        <option value="Random">Random</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Korean">Korean</option>
+                    </select>
+                    <div style={styles.buttonContainer}>
+                        <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
+                        <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,18 +59,20 @@ const styles = {
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
-    container: {
-        padding: "20px",
+    box: {
+        padding: "30px",
         borderRadius: "12px",
         backgroundColor: "#1E1E1E",
-        color: "#FFFFFF",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+    },
+    container: {
         textAlign: "center",
         fontFamily: "Arial, sans-serif",
-        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
     },
     title: {
         fontSize: "2.5rem",
         marginBottom: "20px",
+        color: "#FFFFFF",
     },
     input: {
         padding: "12px",
