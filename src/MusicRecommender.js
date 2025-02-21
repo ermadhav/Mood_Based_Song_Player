@@ -36,6 +36,7 @@ const MusicRecommender = () => {
                 <option value="Turkish">Spanish</option>
                 <option value="Turkish">Russian</option>
                 <option value="Turkish">Chinese</option>
+                <option value="Turkish">Korean</option>
 
             </select>
             <div style={styles.buttonContainer}>
