@@ -23,6 +23,7 @@ const MusicRecommender = () => {
                     onChange={(e) => setThoughts(e.target.value)}
                     style={styles.input}
                 />
+                <label style={styles.label}>Select a language for your music:</label>
                 <select
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
@@ -41,6 +42,9 @@ const MusicRecommender = () => {
                     <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
                 </div>
             </div>
+            <footer style={styles.footer}>
+                <p>&copy; 2025 Mood-Based Music Recommender. All rights reserved.</p>
+            </footer>
         </div>
     );
 };
@@ -56,6 +60,8 @@ const styles = {
         color: "#FFFFFF",
         textAlign: "center",
         fontFamily: "Arial, sans-serif",
+        position: "relative",
+        overflow: "hidden",
     },
     innerContainer: {
         display: "flex",
@@ -79,6 +85,11 @@ const styles = {
         backgroundColor: "#333",
         color: "#FFF",
         outline: "none",
+    },
+    label: {
+        fontSize: "16px",
+        marginBottom: "8px",
+        color: "#FFF",
     },
     select: {
         padding: "12px",
@@ -106,6 +117,16 @@ const styles = {
         cursor: "pointer",
         fontSize: "16px",
         transition: "background 0.3s ease-in-out",
+    },
+    footer: {
+        position: "absolute",
+        bottom: "0",
+        width: "100%",
+        padding: "10px",
+        backgroundColor: "#222",
+        color: "#AAA",
+        fontSize: "14px",
+        textAlign: "center",
     },
 };
 
