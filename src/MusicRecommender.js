@@ -48,7 +48,6 @@ const MusicRecommender = () => {
         </div>
     );
 };
-
 const styles = {
     container: {
         display: "flex",
