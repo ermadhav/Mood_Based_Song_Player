@@ -35,11 +35,6 @@ const MusicRecommender = () => {
                 <option value="Turkish">English</option>
                 <option value="Turkish">Spanish</option>
                 <option value="Turkish">Russian</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Turkish">Turkish</option>
-                {/* Add more languages as needed */}
             </select>
             <div style={styles.buttonContainer}>
                 <button onClick={handleGetMusic} style={styles.button}>Get Music</button>
