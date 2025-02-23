@@ -8,7 +8,7 @@ const MusicRecommender = () => {
   useEffect(() => {
     fetchWeather();
   }, []);
-
+  
   const fetchWeather = async () => {
     try {
       navigator.geolocation.getCurrentPosition(async (position) => {
