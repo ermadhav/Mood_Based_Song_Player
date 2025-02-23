@@ -1,19 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const MusicRecommender = () => {
   const [thoughts, setThoughts] = useState("");
   const [language, setLanguage] = useState("Random");
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    fetchWeather();
+  }, []);
+
+  const fetchWeather = async () => {
+    try {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=2a473686c7dcd8710fba1ecc09bf3d48&units=metric`
+        );
+        const data = await response.json();
+        setWeather(data);
+      });
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+    }
+  };
 
   const handleGetMusic = () => {
-    console.log(`Getting music for: ${thoughts} in ${language}`);
+    console.log(`Getting music for: ${thoughts} in ${language} based on ${weather?.weather[0].description}`);
   };
 
   const handleGetPlaylist = () => {
-    console.log(`Getting playlist for: ${thoughts} in ${language}`);
+    console.log(`Getting playlist for: ${thoughts} in ${language} based on ${weather?.weather[0].description}`);
   };
 
   return (
     <div style={styles.container}>
+      <div style={styles.weatherContainer}>
+        {weather ? (
+          <p>
+            {weather.weather[0].icon.includes("d") ? "☀️" : "🌙"} {weather.name}, {weather.weather[0].description}, {weather.main.temp}°C
+          </p>
+        ) : (
+          <p>Loading weather...</p>
+        )}
+      </div>
       <div style={styles.innerContainer}>
         <h1 style={styles.title}>🎵 Mood-Based Music Recommender 🎶</h1>
         <input
@@ -38,23 +67,17 @@ const MusicRecommender = () => {
           <option value="Korean">🇰🇷 Korean</option>
         </select>
         <div style={styles.buttonContainer}>
-          <button onClick={handleGetMusic} style={styles.button}>
-            🎼 Get Music
-          </button>
-          <button onClick={handleGetPlaylist} style={styles.button}>
-            📜 Get Playlist
-          </button>
+          <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
+          <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
         </div>
       </div>
       <footer style={styles.footer}>
-        <p>
-          &copy; Copyright 2025 All rights reserved | This website is made with
-          ❤️ by Madhav Tiwari
-        </p>
+        <p>&copy; 2025 All rights reserved | Made with ❤️ by Madhav Tiwari</p>
       </footer>
     </div>
   );
 };
+
 const styles = {
   container: {
     display: "flex",
@@ -62,12 +85,25 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     height: "100vh",
+    width: "100vw",
     backgroundColor: "#1E1E1E",
     color: "#FFFFFF",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     position: "relative",
-    overflow: "hidden",
+    overflow: "hidden", // Prevents scrollbars
+  },
+  weatherContainer: {
+    position: "absolute",
+    top: "20px",
+    left: "20px",
+    fontSize: "18px",
+    fontWeight: "bold",
+    padding: "10px",
+    borderRadius: "8px",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(5px)",
+    boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.3)",
   },
   innerContainer: {
     display: "flex",
@@ -82,7 +118,6 @@ const styles = {
     fontSize: "2.5rem",
     marginBottom: "20px",
     fontWeight: "bold",
-    textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
   },
   input: {
     padding: "12px",
@@ -94,7 +129,6 @@ const styles = {
     backgroundColor: "#333",
     color: "#FFF",
     outline: "none",
-    boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.3)",
   },
   label: {
     fontSize: "16px",
@@ -105,15 +139,9 @@ const styles = {
   select: {
     padding: "12px",
     width: "220px",
-    border: "2px solid #1DB954",
     borderRadius: "8px",
     backgroundColor: "#333",
     color: "#FFF",
-    fontSize: "16px",
-    cursor: "pointer",
-    outline: "none",
-    transition: "all 0.3s ease-in-out",
-    boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.3)",
   },
   buttonContainer: {
     display: "flex",
@@ -127,9 +155,6 @@ const styles = {
     backgroundColor: "#1DB954",
     color: "#FFFFFF",
     cursor: "pointer",
-    fontSize: "16px",
-    transition: "background 0.3s ease-in-out",
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
   },
   footer: {
     position: "absolute",
@@ -138,9 +163,6 @@ const styles = {
     padding: "10px",
     backgroundColor: "#222",
     color: "#AAA",
-    fontSize: "14px",
-    textAlign: "center",
-    boxShadow: "0px -3px 5px rgba(0, 0, 0, 0.3)",
   },
 };
 
