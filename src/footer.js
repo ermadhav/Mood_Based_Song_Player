@@ -1,9 +1,11 @@
 import React from "react";
 
 const Footer = () => {
-  <footer className="footer">
-    <p>&copy; 2025 All rights reserved | Made with ❤️ by Madhav Tiwari</p>
-  </footer>;
+  return (
+    <footer style={styles.footer}>
+      <p>&copy; 2025 All rights reserved | Made with ❤️ by Madhav Tiwari</p>
+    </footer>
+  );
 };
 
 const styles = {
@@ -14,7 +16,8 @@ const styles = {
     padding: "10px",
     backgroundColor: "#222",
     color: "#AAA",
+    textAlign: "center", // Ensures text is centered
   },
 };
 
-export default Footer
+export default Footer;
