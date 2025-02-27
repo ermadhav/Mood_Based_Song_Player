@@ -108,7 +108,7 @@ const styles = {
     alignItems: "center",
     padding: "20px",
     borderRadius: "10px",
-    backgroundColor: "#282828",
+    backgroundColor: "#FFFFFF",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
   },
   title: {
