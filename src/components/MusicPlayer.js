@@ -1,23 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import musicIcon from '../images/m4.jpg';
 const Card = () => {
   return (
     <StyledWrapper>
       <div className="card">
         <div className="one">
           <span className="title">Music</span>
-          <div className="music">
-            <svg viewBox="0 0 16 16" className="note bi bi-music-note" fill="currentColor" height={18} width={18} xmlns="http://www.w3.org/2000/svg">
+          <div className="music" >
+            {/* <svg viewBox="0 0 16 16" className="note bi bi-music-note" fill="currentColor" height={18} width={18} xmlns="http://www.w3.org/2000/svg">
               <path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
               <path d="M9 3v10H8V3h1z" fillRule="evenodd" />
               <path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z" />
-            </svg>
+            </svg> */}
+            <img 
+    src={musicIcon} 
+    alt="Music Icon" 
+    className="music-icon" 
+    // height={80} 
+    // width={80} 
+  />
+
           </div>
           <span className="name"><div />
-            One piece first ending</span>
+            Machayenge 4</span>
           <span className="name1"><div />
-            Desconhecido</span>
+            KR$NA</span>
           <div className="bar">
             <svg viewBox="0 0 16 16" className="color bi bi-fast-forward-fill" fill="currentColor" height={16} width={16} xmlns="http://www.w3.org/2000/svg">
               <path d="M7.596 7.304a.802.802 0 0 1 0 1.392l-6.363 3.692C.713 12.69 0 12.345 0 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692Z" />
@@ -85,34 +93,13 @@ display: flex;
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
-
-//   .card {
-//     width: 190px;
-//     height: 254px;
-//     background: lightgrey;
-//     border-radius: 10px;
-//   }
-
-//   .card .one {
-//     width: 190px;
-//     height: 254px;
-//     z-index: 10;
-//     position: absolute;
-//     background: rgba(255, 255, 255, 0.55);
-//     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-//     backdrop-filter: blur(8.5px);
-//     -webkit-backdrop-filter: blur(8.5px);
-//     border-radius: 10px;
-//     border: 1px solid rgba(255, 255, 255, 0.18);
-//   }
-
   .card .one .title {
     width: 70px;
     border: 1px solid rgba(180, 177, 177, 0.308);
     display: block;
     margin: 12px auto;
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
     border-radius: 12px;
     font-family: Roboto, sans-serif;
     color: rgba(102, 100, 100, 0.911);
@@ -128,11 +115,21 @@ display: flex;
     align-items: center;
     justify-content: center;
   }
+    .music-icon{
+    width: 80px;
+    height: 80px;
+    background: rgba(216, 212, 212, 0.726);
+    margin: 30px auto;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
 
   .card .one .name {
     width: 150px;
     height: 20px;
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 500;
     font-family: Roboto, sans-serif;
     padding: 0 5px;
@@ -145,11 +142,11 @@ display: flex;
   .card .one .name1 {
     width: 120px;
     height: 20px;
-    font-size: 9px;
+    font-size: 14px;
     font-weight: 500;
     font-family: Roboto, sans-serif;
     padding: 0 5px;
-    margin: 19px auto;
+    margin: 25px auto;
     display: block;
     overflow: hidden;
     text-align: center;
@@ -157,7 +154,7 @@ display: flex;
   }
   .card .one .bar {
     width: 100px;
-    margin: -15px auto;
+    margin: -25px auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -167,8 +164,8 @@ display: flex;
 
   .card .one .bar:last-child {
     margin: 35px auto;
-    width: 100%;
-    padding: 2px 23px;
+    width: 80%;
+    padding: 5px 0px;
   }
   .card .one .bar .color {
     fill: rgba(82, 79, 79, 0.829);
