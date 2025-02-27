@@ -170,7 +170,7 @@ const StyledWrapper = styled.div`
     width: 80px;
     height: 80px;
     background: rgba(216, 212, 212, 0.726);
-    margin: 50px auto;
+    margin: 35px auto;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -207,7 +207,7 @@ const StyledWrapper = styled.div`
     font-weight: 500;
     font-family: Roboto, sans-serif;
     padding: 0 5px;
-    margin: 25px auto;
+    margin: 35px auto;
     display: block;
     overflow: hidden;
     text-align: center;
