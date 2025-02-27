@@ -71,9 +71,6 @@ const MusicRecommender = () => {
           <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
         </div>
       </div>
-      {/* <footer style={styles.footer}>
-        <p>&copy; 2025 All rights reserved | Made with ❤️ by Madhav Tiwari</p>
-      </footer> */}
     </div>
   );
 };
@@ -156,14 +153,7 @@ const styles = {
     color: "#FFFFFF",
     cursor: "pointer",
   },
-  footer: {
-    position: "absolute",
-    bottom: "0",
-    width: "100%",
-    padding: "10px",
-    backgroundColor: "#222",
-    color: "#AAA",
-  },
+
 };
 
 export default MusicRecommender;
