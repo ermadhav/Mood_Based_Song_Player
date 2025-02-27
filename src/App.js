@@ -1,9 +1,10 @@
 // src/App.js
 import React from 'react';
-import MusicRecommender from './MusicRecommender';
-import Card from './MusicPlaylist';
+import MusicRecommender from './components/MusicRecommender';
+import Card from './components/MusicPlaylist';
 import { ThemeProvider } from 'styled-components';
-// import Footer from './Footer';
+import Footer from './components/Footer';
+import MusicPlayer from './components/MusicPlayer';
 
 const theme = {}; // You can add theme properties if needed
 
@@ -12,8 +13,9 @@ function App() {
         <ThemeProvider theme={theme}>
             <div>
                 <MusicRecommender />
+                <MusicPlayer />
                 <Card />
-                {/* <Footer /> */}
+                <Footer />
             </div>
         </ThemeProvider>
     );

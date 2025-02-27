@@ -11,9 +11,9 @@ const Footer = () => {
 const styles = {
   footer: {
     position: "absolute",
-    bottom: "0",
+    bottom: "100",
     width: "100%",
-    padding: "10px",
+    padding: "5px",
     backgroundColor: "#222",
     color: "#AAA",
     textAlign: "center", // Ensures text is centered
