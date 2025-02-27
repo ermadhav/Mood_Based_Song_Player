@@ -2,12 +2,18 @@
 import React from 'react';
 import MusicRecommender from './MusicRecommender';
 import Card from './MusicPlayer';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {}; // You can add theme properties if needed
+
 function App() {
     return (
-        <div>
-            <MusicRecommender />
-            <Card />
-        </div>
+        <ThemeProvider theme={theme}>
+            <div>
+                <MusicRecommender />
+                <Card />
+            </div>
+        </ThemeProvider>
     );
 }
 

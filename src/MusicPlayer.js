@@ -45,11 +45,13 @@ const Card = () => {
 
 const StyledWrapper = styled.div`
   .main {
-    background-color: white;
-    padding: 1em;
-    padding-bottom: 1.1em;
-    border-radius: 15px;
-    margin: 1em;
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "20px",
+    borderRadius: "10px",
+    backgroundColor: "#282828",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
   }
 
   .loader {

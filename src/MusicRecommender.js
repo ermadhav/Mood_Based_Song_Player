@@ -71,9 +71,9 @@ const MusicRecommender = () => {
           <button onClick={handleGetPlaylist} style={styles.button}>📜 Get Playlist</button>
         </div>
       </div>
-      <footer style={styles.footer}>
+      {/* <footer style={styles.footer}>
         <p>&copy; 2025 All rights reserved | Made with ❤️ by Madhav Tiwari</p>
-      </footer>
+      </footer> */}
     </div>
   );
 };
