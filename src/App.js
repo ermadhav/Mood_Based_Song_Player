@@ -3,7 +3,7 @@ import React from 'react';
 import MusicRecommender from './MusicRecommender';
 import Card from './MusicPlaylist';
 import { ThemeProvider } from 'styled-components';
-import Footer from './Footer';
+// import Footer from './Footer';
 
 const theme = {}; // You can add theme properties if needed
 
@@ -13,7 +13,7 @@ function App() {
             <div>
                 <MusicRecommender />
                 <Card />
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </ThemeProvider>
     );
