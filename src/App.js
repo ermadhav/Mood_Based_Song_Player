@@ -5,16 +5,19 @@ import Card from './components/MusicPlaylist';
 import { ThemeProvider } from 'styled-components';
 import Footer from './components/Footer';
 import MusicPlayer from './components/MusicPlayer';
+import Sample from './components/Sample';
 
 const theme = {}; // You can add theme properties if needed
 
 function App() {
     return (
         <ThemeProvider theme={theme}>
-            <div>
+            <div>   
+                {/* <MusicRecommender /> */}
                 <MusicRecommender />
                 <MusicPlayer />
                 <Card />
+                {/* <Sample /> */}
                 <Footer />
             </div>
         </ThemeProvider>
