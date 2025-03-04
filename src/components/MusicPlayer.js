@@ -303,7 +303,7 @@ const StyledWrapper = styled.div`
       top: 90px;
       left: 90px;
     }
-    20% {
+    20% { 
       top: 50px;
       left: 40px;
     }
