@@ -16,7 +16,7 @@ function App() {
                 {/* <MusicRecommender /> */}
                 <MusicRecommender />
                 <MusicPlayer />
-                <Card />
+                {/* <Card /> */}
                 {/* <Sample /> */}
                 <Footer />
             </div>
