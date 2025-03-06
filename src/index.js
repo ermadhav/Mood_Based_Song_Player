@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { recommendMusic } = require("./MusicRecommender"); // Import your function
+const { recommendMusic } = require("./components/MusicRecommender"); // Import your function
 
 const app = express();
 app.use(cors());
