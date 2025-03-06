@@ -8,7 +8,7 @@
 //   useEffect(() => {
 //     fetchWeather();
 //   }, []);
-  
+
 //   const fetchWeather = async () => {
 //     try {
 //       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -159,18 +159,18 @@
 // export default MusicRecommender;
 
 import React, { useState, useEffect } from "react";
-import Sentiment from 'sentiment';
-import axios from 'axios';
+import Sentiment from "sentiment";
+import axios from "axios";
 
 const MusicRecommender = () => {
   const [thoughts, setThoughts] = useState("");
   const [language, setLanguage] = useState("Random");
   const [weather, setWeather] = useState(null);
-  const [recommendation, setRecommendation] = useState("");
+  const [recommendation] = useState("");
 
-  const SPOTIFY_CLIENT_ID = 'faa3988e5e4c4952bcc099f091bb99cb';
-  const SPOTIFY_CLIENT_SECRET = '977a5b7b4f964ae4a661ca6ea9c4559f';
-  const SPOTIFY_API_URL = 'https://api.spotify.com/v1/recommendations';
+  const SPOTIFY_CLIENT_ID = "faa3988e5e4c4952bcc099f091bb99cb";
+  const SPOTIFY_CLIENT_SECRET = "977a5b7b4f964ae4a661ca6ea9c4559f";
+  const SPOTIFY_API_URL = "https://api.spotify.com/v1/recommendations";
 
   useEffect(() => {
     fetchWeather();
@@ -201,74 +201,210 @@ const MusicRecommender = () => {
     const sentimentScore = analyzeSentiment(thoughts);
     console.log("Sentiment Score:", sentimentScore); // Log the sentiment score
     let mood = "neutral";
-  
+
     if (sentimentScore > 0) {
       mood = "happy";
     } else if (sentimentScore < 0) {
       mood = "sad";
     }
-  
-    // Recommend music based on mood and weather
     await recommendMusic(mood, weather);
   };
 
+  const GENRE_API_URL =
+    "https://api.spotify.com/v1/recommendations/available-genre-seeds";
+
+  // Function to fetch Spotify Token
   const getSpotifyToken = async () => {
     try {
-      const response = await axios.post('https://accounts.spotify.com/api/token', null, {
-        params: {
-          grant_type: 'client_credentials'
-        },
-        headers: {
-          'Authorization': 'Basic ' + btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`),
-          'Content-Type': 'application/x-www-form-urlencoded'
+      const response = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        new URLSearchParams({ grant_type: "client_credentials" }).toString(),
+        {
+          headers: {
+            Authorization:
+              "Basic " + btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`),
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         }
-      });
-      console.log("Spotify Token:", response.data.access_token); // Log the token
+      );
+      console.log("Spotify Token:", response.data.access_token);
       return response.data.access_token;
     } catch (error) {
-      console.error("Error fetching Spotify token:", error.response ? error.response.data : error.message);
-      throw error; // Rethrow the error to handle it in the calling function
+      console.error(
+        "Error fetching Spotify token:",
+        error.response ? error.response.data : error.message
+      );
+      throw error;
     }
   };
 
-  const recommendMusic = async (mood, weather) => {
-    const token = await getSpotifyToken();
-    let seedGenres = "";
-  
-    // Set seed genres based on mood
-    if (mood === "happy") {
-      seedGenres = "pop,party";
-    } else if (mood === "sad") {
-      seedGenres = "sad,acoustic";
-    } else {
-      seedGenres = "chill";
-    }
-  
+  // Function to get available genres from Spotify
+  const getAvailableGenres = async (token) => {
     try {
-      const response = await axios.get(SPOTIFY_API_URL, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        },
-        params: {
-          seed_genres: seedGenres,
-          limit: 5 // Number of recommendations
-        }
+      const response = await axios.get(GENRE_API_URL, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-  
-      console.log("Spotify Recommendations:", response.data); // Log the recommendations
-      const tracks = response.data.tracks.map(track => `${track.name} by ${track.artists[0].name}`).join(', ');
-      setRecommendation(`Recommended tracks: ${tracks}`);
+      console.log("Available Spotify Genres:", response.data.genres);
+      return response.data.genres;
     } catch (error) {
-      console.error("Error fetching recommendations from Spotify:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error fetching available genres:",
+        error.response ? error.response.data : error.message
+      );
+      return [];
     }
   };
+
+  // Function to recommend music based on mood and weather
+  const recommendMusic = async (mood, weather) => {
+    const token = await getSpotifyToken();
+    if (!token) {
+      console.error("Error: Missing Spotify access token.");
+      return "Error: Could not retrieve Spotify token.";
+    }
+
+    // Define mood-based genres
+    const moodGenres = {
+      happy: "pop,party",
+      sad: "sad,acoustic",
+      energetic: "rock,dance",
+      calm: "chill,ambient",
+    };
+
+    // Define weather-based genre modifications
+    const weatherGenres = {
+      rainy: "blues,jazz",
+      sunny: "reggae,latin",
+      cloudy: "indie,lo-fi",
+    };
+
+    // Set genres dynamically
+    let seedGenres = moodGenres[mood] || "chill";
+    if (weatherGenres[weather]) {
+      seedGenres += `,${weatherGenres[weather]}`;
+    }
+
+    console.log("Using seed genres:", seedGenres);
+
+    // Validate seed genres against Spotify's available genres
+    const availableGenres = await getAvailableGenres(token);
+    const validGenres = seedGenres
+      .split(",")
+      .filter((genre) => availableGenres.includes(genre));
+
+    if (validGenres.length === 0) {
+      console.error("Error: No valid genres found.");
+      return "Error: No valid genres found.";
+    }
+
+    try {
+      const response = await axios.get(SPOTIFY_API_URL, {
+        headers: { Authorization: `Bearer ${token}` },
+        params: {
+          seed_genres: validGenres.join(","), // Use only valid genres
+          limit: 5, // Number of recommendations
+        },
+      });
+
+      console.log("Spotify Recommendations:", response.data);
+
+      const tracks = response.data.tracks
+        .map((track) => `${track.name} by ${track.artists[0].name}`)
+        .join(", ");
+
+      return `Recommended tracks: ${tracks}`;
+    } catch (error) {
+      console.error(
+        "Error fetching recommendations from Spotify:",
+        error.response
+          ? JSON.stringify(error.response.data, null, 2)
+          : error.message
+      );
+      return "Error fetching music recommendations.";
+    }
+  };
+
+  // const getSpotifyToken = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "https://accounts.spotify.com/api/token",
+  //       null,
+  //       {
+  //         params: {
+  //           grant_type: "client_credentials",
+  //         },
+  //         headers: {
+  //           Authorization:
+  //             "Basic " + btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`),
+  //           "Content-Type": "application/x-www-form-urlencoded",
+  //         },
+  //       }
+  //     );
+  //     console.log("Spotify Token:", response.data.access_token);
+  //     return response.data.access_token;
+  //   } catch (error) {
+  //     console.error(
+  //       "Error fetching Spotify token:",
+  //       error.response ? error.response.data : error.message
+  //     );
+  //     throw error;
+  //   }
+  // };
+
+  // const recommendMusic = async (mood, weather) => {
+  //   const token = await getSpotifyToken();
+  //   let seedGenres = "";
+
+  //   // Set seed genres based on mood
+  //   if (mood === "happy") {
+  //     seedGenres = "pop,party";
+  //   } else if (mood === "sad") {
+  //     seedGenres = "sad,acoustic";
+  //   } else if (mood === "energetic") {
+  //     seedGenres = "rock,dance";
+  //   } else {
+  //     seedGenres = "chill";
+  //   }
+
+  //   // Adjust recommendations based on weather
+  //   if (weather === "rainy") {
+  //     seedGenres += ",blues,jazz";
+  //   } else if (weather === "sunny") {
+  //     seedGenres += ",reggae,latin";
+  //   }
+
+  //   try {
+  //     const response = await axios.get(SPOTIFY_API_URL, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       params: {
+  //         seed_genres: seedGenres,
+  //         limit: 5, // Number of recommendations
+  //       },
+  //     });
+
+  //     console.log("Spotify Recommendations:", response.data);
+  //     const tracks = response.data.tracks
+  //       .map((track) => `${track.name} by ${track.artists[0].name}`)
+  //       .join(", ");
+
+  //     return `Recommended tracks: ${tracks}`;
+  //   } catch (error) {
+  //     console.error(
+  //       "Error fetching recommendations from Spotify:",
+  //       error.response ? error.response.data : error.message
+  //     );
+  //   }
+  // };
 
   return (
     <div style={styles.container}>
       <div style={styles.weatherContainer}>
         {weather && weather.weather && weather.weather.length > 0 ? (
           <p>
-            {weather.weather[0].icon.includes("d") ? "☀️" : "🌙"} {weather.name}, {weather.weather[0].description}, {weather.main.temp}°C
+            {weather.weather[0].icon.includes("d") ? "☀️" : "🌙"} {weather.name}
+            , {weather.weather[0].description}, {weather.main.temp}°C
           </p>
         ) : (
           <p>Loading weather...</p>
@@ -298,14 +434,15 @@ const MusicRecommender = () => {
           <option value="Korean">🇰🇷 Korean</option>
         </select>
         <div style={styles.buttonContainer}>
-          <button onClick={handleGetMusic} style={styles.button}>🎼 Get Music</button>
+          <button onClick={handleGetMusic} style={styles.button}>
+            🎼 Get Music
+          </button>
         </div>
         {recommendation && <p>{recommendation}</p>}
       </div>
     </div>
   );
 };
-
 
 const styles = {
   container: {
@@ -385,7 +522,6 @@ const styles = {
     color: "#FFFFFF",
     cursor: "pointer",
   },
-
 };
 
 // Add your styles here...

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import musicIcon from "../images/m4.jpg";
+import axios from "axios";
+
 const Card = () => {
   return (
     <StyledWrapper>
@@ -303,7 +305,7 @@ const StyledWrapper = styled.div`
       top: 90px;
       left: 90px;
     }
-    20% { 
+    20% {
       top: 50px;
       left: 40px;
     }
