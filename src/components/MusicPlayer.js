@@ -1,7 +1,6 @@
 // import React from "react";
 // import styled from "styled-components";
 // import musicIcon from "../images/m4.jpg";
-// import axios from "axios";
 
 // const Card = () => {
 //   return (
@@ -128,6 +127,211 @@
 //   );
 // };
 
+// const StyledWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   background: #1e1e1e;
+
+//   .card {
+//     width: 250px;
+//     height: 320px;
+//     background: lightgrey;
+//     border-radius: 10px;
+//     position: relative;
+//   }
+
+//   .card .one {
+//     width: 250px;
+//     height: 320px;
+//     z-index: 10;
+//     position: absolute;
+//     background: rgba(255, 255, 255, 0.55);
+//     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+//     backdrop-filter: blur(8.5px);
+//     -webkit-backdrop-filter: blur(8.5px);
+//     border-radius: 10px;
+//     border: 1px solid rgba(255, 255, 255, 0.18);
+//   }
+
+//   .card .one .title {
+//     width: 70px;
+//     border: 1px solid rgba(180, 177, 177, 0.308);
+//     display: block;
+//     margin: 12px auto;
+//     text-align: center;
+//     font-size: 15px;
+//     border-radius: 12px;
+//     font-family: Roboto, sans-serif;
+//     color: rgba(102, 100, 100, 0.911);
+//   }
+
+//   .card .one .music {
+//     width: 80px;
+//     height: 80px;
+//     background: rgba(216, 212, 212, 0.726);
+//     margin: 35px auto;
+//     border-radius: 15px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+//   .music-icon {
+//     width: 80px;
+//     height: 80px;
+//     background: rgba(216, 212, 212, 0.726);
+//     margin: 30px auto;
+//     border-radius: 15px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+//   .card .one .name {
+//     width: 150px;
+//     height: 20px;
+//     font-size: 17px;
+//     font-weight: 500;
+//     font-family: Roboto, sans-serif;
+//     padding: 0 5px;
+//     margin: -22px auto;
+//     display: block;
+//     overflow: hidden;
+//     text-align: center;
+//     color: rgba(50, 49, 51, 0.637);
+//   }
+//   .card .one .name1 {
+//     width: 120px;
+//     height: 20px;
+//     font-size: 14px;
+//     font-weight: 500;
+//     font-family: Roboto, sans-serif;
+//     padding: 0 5px;
+//     margin: 35px auto;
+//     display: block;
+//     overflow: hidden;
+//     text-align: center;
+//     color: rgba(50, 49, 51, 0.637);
+//   }
+//   .card .one .bar {
+//     width: 100px;
+//     margin: -25px auto;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 0 5px;
+//     cursor: pointer;
+//   }
+
+//   .card .one .bar:last-child {
+//     margin: 50px auto;
+//     width: 80%;
+//     padding: 5px 0px;
+//   }
+//   .card .one .bar .color {
+//     fill: rgba(82, 79, 79, 0.829);
+//   }
+//   .card .one .bar .color1 {
+//     fill: rgba(29, 28, 28, 0.829);
+//     cursor: pointer;
+//   }
+
+//   .card .one .bar .bi:first-child {
+//     transform: rotate(180deg);
+//   }
+//   .card .one .bar:last-child .color1:first-child {
+//     transform: rotate(0deg);
+//   }
+
+//   .card .two {
+//     width: 60px;
+//     height: 60px;
+//     background-color: rgb(131, 25, 163);
+//     filter: drop-shadow(0 0 10px rgb(131, 25, 163));
+//     border-radius: 50%;
+//     position: relative;
+//     top: 30px;
+//     left: 20px;
+//     animation: one 5s infinite;
+//   }
+
+//   .card .three {
+//     width: 60px;
+//     height: 60px;
+//     background-color: rgb(29, 209, 149);
+//     filter: drop-shadow(0 0 10px rgb(29, 209, 149));
+//     border-radius: 50%;
+//     position: relative;
+//     top: 90px;
+//     left: 90px;
+//     animation: two 5s infinite;
+//   }
+
+//   @keyframes one {
+//     0% {
+//       top: 30px;
+//       left: 20px;
+//     }
+//     20% {
+//       top: 50px;
+//       left: 40px;
+//     }
+//     40% {
+//       top: 80px;
+//       left: 70px;
+//     }
+//     50% {
+//       top: 60px;
+//       left: 40px;
+//     }
+//     60% {
+//       top: 35px;
+//       left: 90px;
+//     }
+//     80% {
+//       top: 70px;
+//       left: 70px;
+//     }
+//     100% {
+//       top: 30px;
+//       left: 20px;
+//     }
+//   }
+
+//   @keyframes two {
+//     0% {
+//       top: 90px;
+//       left: 90px;
+//     }
+//     20% { 
+//       top: 50px;
+//       left: 40px;
+//     }
+//     40% {
+//       top: 60px;
+//       left: 20px;
+//     }
+//     50% {
+//       top: 80px;
+//       left: 30px;
+//     }
+//     60% {
+//       top: 35px;
+//       left: 90px;
+//     }
+//     80% {
+//       top: 70px;
+//       left: 60px;
+//     }
+//     100% {
+//       top: 90px;
+//       left: 90px;
+//     }
+//   }
+// `;
+
+// export default Card;
 
 
 import React, { useState, useEffect } from "react";
@@ -139,12 +343,11 @@ const MusicPlayer = () => {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    // Example: Hardcoded mood & weather. Replace with dynamic values if needed.
-    const mood = "happy";
+    const mood = "happy"; // Change based on user input
     const weather = "sunny";
 
     axios
-      .get(`http://localhost:3000/recommend?mood=${mood}&weather=${weather}`)
+      .get(`http://localhost:5000/recommend?mood=${mood}&weather=${weather}`)
       .then((response) => {
         setTracks(response.data.tracks || []);
       })
@@ -177,206 +380,20 @@ const MusicPlayer = () => {
 };
 
 const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #1e1e1e;
-
   .card {
-    width: 250px;
-    height: 320px;
-    background: lightgrey;
-    border-radius: 10px;
-    position: relative;
-  }
-
-  .card .one {
-    width: 250px;
-    height: 320px;
-    z-index: 10;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.55);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(8.5px);
-    -webkit-backdrop-filter: blur(8.5px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .card .one .title {
-    width: 70px;
-    border: 1px solid rgba(180, 177, 177, 0.308);
-    display: block;
-    margin: 12px auto;
+    background: #282c34;
+    padding: 20px;
+    border-radius: 8px;
     text-align: center;
-    font-size: 15px;
-    border-radius: 12px;
-    font-family: Roboto, sans-serif;
-    color: rgba(102, 100, 100, 0.911);
-  }
-
-  .card .one .music {
-    width: 80px;
-    height: 80px;
-    background: rgba(216, 212, 212, 0.726);
-    margin: 35px auto;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: white;
   }
   .music-icon {
     width: 80px;
     height: 80px;
-    background: rgba(216, 212, 212, 0.726);
-    margin: 30px auto;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
-
-  .card .one .name {
-    width: 150px;
-    height: 20px;
-    font-size: 17px;
-    font-weight: 500;
-    font-family: Roboto, sans-serif;
-    padding: 0 5px;
-    margin: -22px auto;
-    display: block;
-    overflow: hidden;
-    text-align: center;
-    color: rgba(50, 49, 51, 0.637);
-  }
-  .card .one .name1 {
-    width: 120px;
-    height: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: Roboto, sans-serif;
-    padding: 0 5px;
-    margin: 35px auto;
-    display: block;
-    overflow: hidden;
-    text-align: center;
-    color: rgba(50, 49, 51, 0.637);
-  }
-  .card .one .bar {
-    width: 100px;
-    margin: -25px auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5px;
-    cursor: pointer;
-  }
-
-  .card .one .bar:last-child {
-    margin: 50px auto;
-    width: 80%;
-    padding: 5px 0px;
-  }
-  .card .one .bar .color {
-    fill: rgba(82, 79, 79, 0.829);
-  }
-  .card .one .bar .color1 {
-    fill: rgba(29, 28, 28, 0.829);
-    cursor: pointer;
-  }
-
-  .card .one .bar .bi:first-child {
-    transform: rotate(180deg);
-  }
-  .card .one .bar:last-child .color1:first-child {
-    transform: rotate(0deg);
-  }
-
-  .card .two {
-    width: 60px;
-    height: 60px;
-    background-color: rgb(131, 25, 163);
-    filter: drop-shadow(0 0 10px rgb(131, 25, 163));
-    border-radius: 50%;
-    position: relative;
-    top: 30px;
-    left: 20px;
-    animation: one 5s infinite;
-  }
-
-  .card .three {
-    width: 60px;
-    height: 60px;
-    background-color: rgb(29, 209, 149);
-    filter: drop-shadow(0 0 10px rgb(29, 209, 149));
-    border-radius: 50%;
-    position: relative;
-    top: 90px;
-    left: 90px;
-    animation: two 5s infinite;
-  }
-
-  @keyframes one {
-    0% {
-      top: 30px;
-      left: 20px;
-    }
-    20% {
-      top: 50px;
-      left: 40px;
-    }
-    40% {
-      top: 80px;
-      left: 70px;
-    }
-    50% {
-      top: 60px;
-      left: 40px;
-    }
-    60% {
-      top: 35px;
-      left: 90px;
-    }
-    80% {
-      top: 70px;
-      left: 70px;
-    }
-    100% {
-      top: 30px;
-      left: 20px;
-    }
-  }
-
-  @keyframes two {
-    0% {
-      top: 90px;
-      left: 90px;
-    }
-    20% {
-      top: 50px;
-      left: 40px;
-    }
-    40% {
-      top: 60px;
-      left: 20px;
-    }
-    50% {
-      top: 80px;
-      left: 30px;
-    }
-    60% {
-      top: 35px;
-      left: 90px;
-    }
-    80% {
-      top: 70px;
-      left: 60px;
-    }
-    100% {
-      top: 90px;
-      left: 90px;
-    }
+  .track {
+    margin-top: 10px;
+    font-size: 18px;
   }
 `;
 
