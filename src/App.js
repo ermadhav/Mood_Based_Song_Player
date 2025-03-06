@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import MusicRecommender from './components/MusicRecommender';
-import Card from './components/MusicPlaylist';
+// import Card from './components/MusicPlaylist';
 import { ThemeProvider } from 'styled-components';
 import Footer from './components/Footer';
 import MusicPlayer from './components/MusicPlayer';
